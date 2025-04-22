@@ -1,0 +1,57 @@
+<div class="navbar">
+  <div class="logo">Trello</div>
+  <div class="nav-items">
+    <div class="nav-item" (click)="toggleWorkspaces()" [class.active]="showWorkspaces">
+      Workspaces ▼
+    </div>
+    <div class="nav-item" (click)="toggleRecent()" [class.active]="showRecent">
+      Recent ▼
+    </div>
+    <div class="nav-item">Create ▼</div>
+    <button class="nav-button">Prueba</button>
+  </div>
+</div>
+
+<div *ngIf="showRecent" class="dropdown">
+  <div class="dropdown-header">Prueba</div>
+  <div class="dropdown-item">
+    <span class="workspace-icon">🗄️</span>
+    gabrielmontoyahuaman26's workspace
+  </div>
+</div>
+
+<div *ngIf="showWorkspaces" class="dropdown">
+  <div class="dropdown-header">Your workspaces</div>
+  <div class="dropdown-item">
+    <span class="workspace-icon">🗄️</span>
+    gabrielmontoyahuaman26's workspace
+  </div>
+</div>
+
+<div class="workspace-container">
+  <div class="header">
+    <h1>Your Workspaces</h1>
+  </div>
+
+  <div class="workspace-list">
+    <div class="workspace-section">
+      <div class="workspace-title">Templates</div>
+      <div class="workspace-item">
+        <span class="workspace-icon">T</span>
+        <span>Template 1</span>
+      </div>
+      <div class="workspace-item">
+        <span class="workspace-icon">T</span>
+        <span>Template 2</span>
+      </div>
+    </div>
+
+    <div class="workspace-section">
+      <div class="workspace-title">Home</div>
+      <div class="workspace-item">
+        <span class="workspace-icon">H</span>
+        <span>Home Workspace</span>
+      </div>
+    </div>
+  </div>
+</div>

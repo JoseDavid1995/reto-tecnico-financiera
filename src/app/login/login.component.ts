@@ -34,6 +34,7 @@ export class LoginComponent {
 
       if (user) {
         document.cookie = "access_token=my_token; max-age=300; path=/";
+        this.router.navigate(['/workspace']);
         alert('Inicio de sesión exitoso');
       } else {
         alert('Credenciales incorrectas');
