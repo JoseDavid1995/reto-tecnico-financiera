@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="login-container">
+    <h2>Ingresa tus datos</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onCheckEmail()">
+      <input id="email" formControlName="email" type="email" placeholder="Correo electrónico" />
+      <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+        <small *ngIf="registerForm.get('email')?.errors?.['required']">El correo es obligatorio.</small>
+        <small *ngIf="registerForm.get('email')?.errors?.['email']">Correo inválido.</small>
+      </div>
+
+      <button type="submit" [disabled]="registerForm.invalid">Continuar</button>
+    </form>
+  </div>
+</div>

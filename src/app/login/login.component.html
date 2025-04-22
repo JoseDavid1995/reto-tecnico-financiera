@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="login-container">
+    <h2>Iniciar sesión para continuar</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input id="email" formControlName="email" type="email" placeholder="Introduce tu correo electrónico" />
+      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        <small *ngIf="loginForm.get('email')?.errors?.['required']">El correo es obligatorio.</small>
+        <small *ngIf="loginForm.get('email')?.errors?.['email']">Correo inválido.</small>
+      </div>
+
+      <input id="password" formControlName="password" type="password" placeholder="Contraseña" />
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <small *ngIf="loginForm.get('password')?.errors?.['required']">La contraseña es obligatoria.</small>
+        <small *ngIf="loginForm.get('password')?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</small>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">Iniciar sesión</button>
+      <p><a href="#">¿No puedes iniciar sesión?</a></p>
+      <p><a (click)="goToRegister()">Crear una cuenta</a></p>
+    </form>
+  </div>
+</div>
