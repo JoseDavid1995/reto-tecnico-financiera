@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   imports: [CommonModule, ReactiveFormsModule],
+  
 
 })
 export class LoginComponent {
@@ -31,7 +33,7 @@ export class LoginComponent {
       );
 
       if (user) {
-        document.cookie = "access_token=my_token; max-age=60; path=/";
+        document.cookie = "access_token=my_token; max-age=300; path=/";
         this.router.navigate(['/workspace']);
         alert('Inicio de sesión exitoso');
       } else {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -19,10 +19,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 })
 export class WorkspaceComponent {
   activeButton: string = '';
-  workspaces = [
-    { name: 'Gabriel Montoya', description: 'My workspace' },
-    { name: 'Renato Montoya', description: 'Another workspace' },
-  ];
+  comentario1: string = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum';
+  readonly panelOpenState = signal(false);
+
 
   constructor(private router: Router) {
     this.checkToken();
