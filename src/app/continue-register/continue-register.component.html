@@ -1,10 +1,23 @@
 <div class="container">
   <h2>Ingresa tus datos</h2>
-  <form (ngSubmit)="onSubmit()">
-    <input type="text" placeholder="Nombre y apellido" [(ngModel)]="nombre" name="nombre" required />
-    <input type="email" placeholder="Correo electrónico" [(ngModel)]="email" name="email" required />
-    <input type="password" placeholder="Contraseña" [(ngModel)]="password" name="password" required />
-    <input type="password" placeholder="Confirmar contraseña" [(ngModel)]="confirmPassword" name="confirmPassword" required />
-    <button type="submit">Registrar</button>
+  <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="Nombre y apellido" formControlName="nombre" required />
+    
+    <input type="email" placeholder="Correo electrónico" formControlName="email" required />
+    <div *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched">
+      <small>Ingresa un correo electrónico válido.</small>
+    </div>
+
+    <input type="password" placeholder="Contraseña" formControlName="password" required />
+    <div *ngIf="registroForm.get('password')?.invalid && registroForm.get('password')?.touched">
+      <small>La contraseña debe tener al menos 6 caracteres.</small>
+    </div>
+
+    <input type="password" placeholder="Confirmar contraseña" formControlName="confirmPassword" required />
+    <div *ngIf="registroForm.errors?.['mismatch'] && registroForm.get('confirmPassword')?.touched">
+      <small>Las contraseñas no coinciden.</small>
+    </div>
+
+    <button type="submit" [disabled]="registroForm.invalid">Registrar</button>
   </form>
 </div>

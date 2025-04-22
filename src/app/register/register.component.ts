@@ -20,17 +20,14 @@ export class RegisterComponent {
   }
 
   onCheckEmail() {
-    debugger;
     const email = this.registerForm.value.email;
 
-    // Obtener todos los usuarios almacenados en localStorage
     const storedUsers = JSON.parse(localStorage.getItem('usuarios') || '[]');
 
-    // Verificar si el email ya existe en el almacenamiento local
     const emailExists = storedUsers.some((user: { email: string }) => user.email === email);
 
     if (emailExists) {
-      this.router.navigate(['/']); // Redirigir al formulario de login
+      this.router.navigate(['/']); 
       alert('Este correo ya está en uso. Por favor, inicia sesión.');
     } else {
       // Continuar con el flujo de creación de cuenta

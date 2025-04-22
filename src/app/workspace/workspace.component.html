@@ -1,57 +1,62 @@
-<div class="navbar">
-  <div class="logo">Trello</div>
-  <div class="nav-items">
-    <div class="nav-item" (click)="toggleWorkspaces()" [class.active]="showWorkspaces">
-      Workspaces ▼
-    </div>
-    <div class="nav-item" (click)="toggleRecent()" [class.active]="showRecent">
-      Recent ▼
-    </div>
-    <div class="nav-item">Create ▼</div>
-    <button class="nav-button">Prueba</button>
-  </div>
-</div>
+<mat-toolbar color="primary">
+  <span></span>
+  <span class="spacer"></span> <!-- Espaciador para mover el usuario a la derecha -->
+  
+  <!-- Botones existentes -->
+  <button mat-button 
+          [matMenuTriggerFor]="menuWorkspaces" 
+          [class.active]="activeButton === 'workspaces'" 
+          (click)="openWorkspaces()" 
+          style="color:white">
+    Workspaces <mat-icon style="margin-left: 8px;">arrow_drop_down</mat-icon>
+  </button>
+  
+  <button mat-button 
+          [matMenuTriggerFor]="menuTemplates" 
+          [class.active]="activeButton === 'templates'" 
+          (click)="openTemplates()" 
+          style="color:white">
+    Recent <mat-icon style="margin-left: 8px;">arrow_drop_down</mat-icon>
+  </button>
+  
+  <button mat-button 
+          [matMenuTriggerFor]="menuHome" 
+          [class.active]="activeButton === 'home'" 
+          (click)="openHome()" 
+          style="color:white">
+    Crear <mat-icon style="margin-left: 8px;">arrow_drop_down</mat-icon>
+  </button>
+  
+  <button mat-button 
+          (click)="createBoard()" 
+          [class.active]="activeButton === 'prueba'" 
+          style="color:white">
+    Prueba
+  </button>
 
-<div *ngIf="showRecent" class="dropdown">
-  <div class="dropdown-header">Prueba</div>
-  <div class="dropdown-item">
-    <span class="workspace-icon">🗄️</span>
-    gabrielmontoyahuaman26's workspace
-  </div>
-</div>
+  <!-- Imagen del usuario que desencadena el menú -->
+  <button mat-button 
+          [matMenuTriggerFor]="menuOptions" 
+          style="color:white">
+    <img src="https://www.creativefabrica.com/wp-content/uploads/2022/10/25/Support-Admin-icon-Graphics-43209390-1.jpg"  alt="User" style="width: 32px; height: 32px; border-radius: 50%;">
+  </button>
 
-<div *ngIf="showWorkspaces" class="dropdown">
-  <div class="dropdown-header">Your workspaces</div>
-  <div class="dropdown-item">
-    <span class="workspace-icon">🗄️</span>
-    gabrielmontoyahuaman26's workspace
-  </div>
-</div>
+  <mat-menu #menuOptions="matMenu" xPosition="after" yPosition="below">
+    <button mat-menu-item (click)="goToDashboard()">Dashboard</button>
+    <button mat-menu-item (click)="openSettings()">Settings</button>
+    <button mat-menu-item (click)="viewEarnings()">Earnings</button>
+    <button mat-menu-item (click)="signOut()">Sign out</button>
+  </mat-menu>
 
-<div class="workspace-container">
-  <div class="header">
-    <h1>Your Workspaces</h1>
-  </div>
-
-  <div class="workspace-list">
-    <div class="workspace-section">
-      <div class="workspace-title">Templates</div>
-      <div class="workspace-item">
-        <span class="workspace-icon">T</span>
-        <span>Template 1</span>
-      </div>
-      <div class="workspace-item">
-        <span class="workspace-icon">T</span>
-        <span>Template 2</span>
-      </div>
-    </div>
-
-    <div class="workspace-section">
-      <div class="workspace-title">Home</div>
-      <div class="workspace-item">
-        <span class="workspace-icon">H</span>
-        <span>Home Workspace</span>
-      </div>
-    </div>
-  </div>
-</div>
+  <mat-menu #menuWorkspaces="matMenu">
+    <button mat-menu-item (click)="createBoard()">Create Workspaces</button>
+  </mat-menu>
+  
+  <mat-menu #menuTemplates="matMenu">
+    <button mat-menu-item (click)="createBoard()">Create Recents</button>
+  </mat-menu>
+  
+  <mat-menu #menuHome="matMenu">
+    <button mat-menu-item (click)="createBoard()">Create Home</button>
+  </mat-menu>
+</mat-toolbar>
